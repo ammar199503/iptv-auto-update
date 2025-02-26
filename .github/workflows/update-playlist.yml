@@ -34,17 +34,13 @@ jobs:
 
           echo "Combined playlist:"
           cat playlist.m3u
-
-      - name: Install Dependencies
+          
+      - name: Install Dependencies and iptv-checker via npm
         run: |
           sudo apt update
-          sudo apt install -y curl jq
-
-      - name: Download iptv-checker
-        run: |
-          curl -fsSL https://github.com/freearhey/iptv-checker/releases/latest/download/iptv-checker-linux-amd64 -o iptv-checker
-          chmod +x iptv-checker
-
+          sudo apt install -y nodejs npm curl jq
+          npm install -g iptv-checker
+     
       - name: Run iptv-checker on the Combined Playlist
         run: |
           ./iptv-checker playlist.m3u -o working_playlist.m3u
