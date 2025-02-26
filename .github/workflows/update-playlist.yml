@@ -1,0 +1,71 @@
+name: IPTV Checker & Updater
+
+on:
+  schedule:
+    - cron: "0 */12 * * *"  # Runs every 12 hours; adjust as needed
+  workflow_dispatch:  # Allows manual trigger
+
+jobs:
+  update-playlist:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Generate Combined Playlist from M3U Playlist URLs
+        run: |
+          # Define your M3U playlist URLs (one per line)
+          cat <<EOF > playlist_links.txt
+          https://iptv-org.github.io/iptv/countries/uk.m3u
+          https://iptv-org.github.io/iptv/countries/us.m3u
+          https://iptv-org.github.io/iptv/countries/pk.m3u
+          https://iptv-org.github.io/iptv/countries/in.m3u
+          https://iptv-org.github.io/iptv/countries/ae.m3u
+          https://iptv-org.github.io/iptv/countries/sa.m3u
+          EOF
+
+          # Create the combined playlist file; start with the header
+          echo "#EXTM3U" > playlist.m3u
+          while read -r url; do
+            echo "Fetching $url"
+            # Download the playlist; remove any duplicate "#EXTM3U" header lines
+            curl -fsSL "$url" | sed '/^#EXTM3U/d' >> playlist.m3u
+          done < playlist_links.txt
+
+          echo "Combined playlist:"
+          cat playlist.m3u
+
+      - name: Install Dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y curl jq
+
+      - name: Download iptv-checker
+        run: |
+          curl -fsSL https://github.com/freearhey/iptv-checker/releases/latest/download/iptv-checker-linux-amd64 -o iptv-checker
+          chmod +x iptv-checker
+
+      - name: Run iptv-checker on the Combined Playlist
+        run: |
+          ./iptv-checker playlist.m3u -o working_playlist.m3u
+          echo "Working Playlist:"
+          cat working_playlist.m3u
+
+      - name: Commit & Push Updated Working Playlist to Repo
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "actions@github.com"
+          git add working_playlist.m3u
+          git commit -m "Update working IPTV playlist $(date)" || echo "No changes to commit"
+          git push
+
+      - name: Update Gist with Working Playlist (Optional)
+        if: ${{ secrets.GIST_TOKEN && secrets.GIST_ID }}
+        env:
+          GIST_ID: ${{ secrets.GIST_ID }}
+          GIST_TOKEN: ${{ secrets.GIST_TOKEN }}
+        run: |
+          curl -X PATCH "https://api.github.com/gists/${GIST_ID}" \
+          -H "Authorization: token ${GIST_TOKEN}" \
+          -H "Content-Type: application/json" \
+          -d "{\"files\": {\"working_playlist.m3u\": {\"content\": \"$(cat working_playlist.m3u | sed 's/\"/\\\"/g')\"}}}"
