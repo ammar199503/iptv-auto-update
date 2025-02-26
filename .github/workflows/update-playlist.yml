@@ -2,8 +2,8 @@ name: IPTV Checker & Updater
 
 on:
   schedule:
-    - cron: "0 */12 * * *"  # Runs every 12 hours; adjust as needed
-  workflow_dispatch:  # Allows manual trigger
+    - cron: "0 */12 * * *"  # Runs every 12 hours
+  workflow_dispatch:
 
 jobs:
   update-playlist:
@@ -60,12 +60,16 @@ jobs:
           git push
 
       - name: Update Gist with Working Playlist (Optional)
-        if: ${{ secrets.GIST_TOKEN && secrets.GIST_ID }}
         env:
           GIST_ID: ${{ secrets.GIST_ID }}
           GIST_TOKEN: ${{ secrets.GIST_TOKEN }}
         run: |
-          curl -X PATCH "https://api.github.com/gists/${GIST_ID}" \
-          -H "Authorization: token ${GIST_TOKEN}" \
-          -H "Content-Type: application/json" \
-          -d "{\"files\": {\"working_playlist.m3u\": {\"content\": \"$(cat working_playlist.m3u | sed 's/\"/\\\"/g')\"}}}"
+          if [ -z "${GIST_ID}" ] || [ -z "${GIST_TOKEN}" ]; then
+            echo "Skipping Gist update: GIST_ID or GIST_TOKEN is not set."
+          else
+            echo "Updating Gist..."
+            curl -X PATCH "https://api.github.com/gists/${GIST_ID}" \
+              -H "Authorization: token ${GIST_TOKEN}" \
+              -H "Content-Type: application/json" \
+              -d "{\"files\": {\"working_playlist.m3u\": {\"content\": \"$(cat working_playlist.m3u | sed 's/\"/\\\"/g')\"}}}"
+          fi
