@@ -40,10 +40,11 @@ jobs:
           sudo apt update
           sudo apt install -y nodejs npm curl jq
           npm install -g iptv-checker
+          export PATH=$PATH:$(npm bin -g)
      
       - name: Run iptv-checker on the Combined Playlist
         run: |
-          ./iptv-checker playlist.m3u -o working_playlist.m3u
+          iptv-checker playlist.m3u -o working_playlist.m3u
           echo "Working Playlist:"
           cat working_playlist.m3u
 
