@@ -38,7 +38,7 @@ jobs:
       - name: Install Dependencies and iptv-checker via npm
         run: |
           sudo apt update
-          sudo apt install -y nodejs npm curl jq
+          sudo apt install -y nodejs npm curl jq ffmpeg
           npm install -g iptv-checker
           export PATH=$PATH:$(npm bin -g)
      
