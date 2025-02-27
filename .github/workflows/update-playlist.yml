@@ -27,6 +27,14 @@ jobs:
 
           echo "Combined playlist:"
           cat playlist.m3u
+          
+      - name: Ensure Playlist Header
+        run: |
+          if ! grep -q "^#EXTM3U" playlist.m3u; then
+            sed -i '1i#EXTM3U' playlist.m3u
+          fi
+          echo "Ensured #EXTM3U header:"
+          cat playlist.m3u    
 
       - name: Validate Playlist Format
         run: |
@@ -51,135 +59,139 @@ jobs:
 
       - name: Run iptv-checker on the Playlist
         run: |
-          iptv-checker playlist.m3u -o output
-          echo "#EXTM3U" > final_playlist.m3u
-          echo "#EXTINF:-1,Saudi Quran" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/saudiquransd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Saudi Sunnah" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/saudisunnahsd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Ary QTV" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/aryqtvsd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Madni TV" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/madnitvsd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Animal Planet" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/skyanimalplanetddr/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,National Geographic" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/skynatgeo/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Action Movies" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/osnmovieaction/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Sky Cinema" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/skycinemapremier/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,OSN movies" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/osnmovies/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,OSN Series" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/osnseries/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Sky Cinema Sci-fi" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/skycinemascifi/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,8xm" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/8xmsd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Jalwa Music" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/jalwamusicsd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,A Plus" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/aplushd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Aan TV" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/aantvhd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,A TV" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/atvhd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Aur Life" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/aurlifehdddr/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Aaj TV" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/aajtvsd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Apna TV" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/apnatv/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Ary Digital" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/arydigitalhd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Geo TV" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/geotvhdddr/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Hum TV" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/humtvsdddr/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,24 News" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/24newshd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,7 News" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/7newshd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,92 News" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/92newshdddr/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Abn News" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/abnnewshd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Aaj News" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/aajnewssd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Abbtak News" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/abbtaknewssd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Ary News" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/arynewssd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Bol News" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/bolnewshd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Channel Five" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/channelfive/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Dawn News" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/dawnnewssd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Dunya News" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/dunyanewshd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Express News" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/expressnewssd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Geo News" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/geonewshdddr/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Hum News" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/humnewshd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Ktn News" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/ktnnewshd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Khyber News" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/khybernewssd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Lahore news" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/lahorenewshd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Neo News" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/neonewshd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Pnn News" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/pnnnewshd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Sindh News" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/sindhnewssd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Talon News" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/talonnewshd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Vsh News" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/vshnewssd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Ptv News" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/ptvnewshd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Play TV" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/playtvsd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Public News" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/publicnewshd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Such News" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/suchnewshd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Samaa News" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/samaanewssdddr/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Suno News" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/sunonewshd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,A Sports" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/asportssd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Astro Cric" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/astrocrichd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Ptv Sports" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/ptvsportssd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Super Sports EPL" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/supersportseplhd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Starz Play Cric" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/starzplaycric/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Sky Sports Cric" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/skysportscrichd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Sky Sports EPL" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/skysportseplhd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Sky Main Event" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/skyspmainevent/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Willow Cricket Xtra" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/willowcricketxtra/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Ten Sports" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/tensportssdddr/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Willow Cric" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/willowcrichd/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          echo "#EXTINF:-1,Sky Sports WWE" >> final_playlist.m3u
-          echo "http://webtv.dodear.asia:88/skysportswwe/tracks-v1a1/mono.m3u8" >> final_playlist.m3u
-          cat output/online.m3u >> final_playlist.m3u
+          set -e
+          if ! iptv-checker playlist.m3u -o output; then
+            echo "Unable to parse the playlist"
+            exit 1
+          fi
+          echo "#EXTM3U" > output/final_playlist.m3u
+          echo "#EXTINF:-1,Saudi Quran" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/saudiquransd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Saudi Sunnah" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/saudisunnahsd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Ary QTV" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/aryqtvsd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Madni TV" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/madnitvsd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Animal Planet" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/skyanimalplanetddr/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,National Geographic" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/skynatgeo/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Action Movies" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/osnmovieaction/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Sky Cinema" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/skycinemapremier/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,OSN movies" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/osnmovies/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,OSN Series" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/osnseries/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Sky Cinema Sci-fi" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/skycinemascifi/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,8xm" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/8xmsd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Jalwa Music" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/jalwamusicsd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,A Plus" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/aplushd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Aan TV" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/aantvhd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,A TV" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/atvhd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Aur Life" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/aurlifehdddr/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Aaj TV" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/aajtvsd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Apna TV" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/apnatv/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Ary Digital" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/arydigitalhd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Geo TV" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/geotvhdddr/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Hum TV" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/humtvsdddr/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,24 News" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/24newshd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,7 News" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/7newshd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,92 News" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/92newshdddr/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Abn News" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/abnnewshd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Aaj News" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/aajnewssd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Abbtak News" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/abbtaknewssd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Ary News" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/arynewssd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Bol News" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/bolnewshd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Channel Five" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/channelfive/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Dawn News" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/dawnnewssd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Dunya News" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/dunyanewshd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Express News" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/expressnewssd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Geo News" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/geonewshdddr/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Hum News" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/humnewshd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Ktn News" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/ktnnewshd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Khyber News" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/khybernewssd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Lahore news" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/lahorenewshd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Neo News" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/neonewshd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Pnn News" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/pnnnewshd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Sindh News" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/sindhnewssd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Talon News" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/talonnewshd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Vsh News" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/vshnewssd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Ptv News" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/ptvnewshd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Play TV" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/playtvsd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Public News" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/publicnewshd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Such News" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/suchnewshd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Samaa News" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/samaanewssdddr/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Suno News" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/sunonewshd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,A Sports" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/asportssd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Astro Cric" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/astrocrichd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Ptv Sports" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/ptvsportssd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Super Sports EPL" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/supersportseplhd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Starz Play Cric" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/starzplaycric/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Sky Sports Cric" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/skysportscrichd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Sky Sports EPL" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/skysportseplhd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Sky Main Event" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/skyspmainevent/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Willow Cricket Xtra" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/willowcricketxtra/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Ten Sports" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/tensportssdddr/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Willow Cric" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/willowcrichd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          echo "#EXTINF:-1,Sky Sports WWE" >> output/final_playlist.m3u
+          echo "http://webtv.dodear.asia:88/skysportswwe/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
+          cat output/online.m3u >> output/final_playlist.m3u
           echo "Final Playlist:"
-          cat final_playlist.m3u
+          cat output/final_playlist.m3u
 
       - name: Commit & Push Updated Working Playlist to Repo
         env:
