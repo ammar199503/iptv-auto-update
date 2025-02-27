@@ -11,8 +11,6 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
-        with:
-          persist-credentials: true
 
       - name: Generate Combined Playlist from M3U Playlist URLs
         run: |
@@ -65,8 +63,8 @@ jobs:
             echo "Skipping Gist update: GIST_ID or GIST_TOKEN is not set."
           else
             echo "Updating Gist..."
+            gist_content=$(cat output/online.m3u | jq -Rs .)
             curl -X PATCH "https://api.github.com/gists/${GIST_ID}" \
               -H "Authorization: token ${GIST_TOKEN}" \
               -H "Content-Type: application/json" \
-              -d "{\"files\": {\"working_playlist_pk.m3u\": {\"content\": \"$(cat output/online.m3u | sed 's/\"/\\\"/g')\"}}}"
-          fi
+              -d "{\"files\": {\"working_playlist_pk.m3u\": {\"content\": ${gist_content}}}}"
