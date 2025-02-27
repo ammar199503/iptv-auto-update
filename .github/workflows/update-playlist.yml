@@ -16,7 +16,7 @@ jobs:
         run: |
           # Define your M3U playlist URLs (one per line)
           cat <<EOF > playlist_links.txt
-          https://iptv-org.github.io/iptv/countries/pk.m3u
+          https://iptv-org.github.io/iptv/countries/gg.m3u
           EOF
 
           while read -r url; do
