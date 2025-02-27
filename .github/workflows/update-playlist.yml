@@ -40,7 +40,6 @@ jobs:
       - name: Create Output Directory
         run: mkdir -p output
 
-     
       - name: Run iptv-checker on the Playlist
         run: |
           iptv-checker playlist.m3u -o output
@@ -51,7 +50,7 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "actions@github.com"
-          git add online.m3u
+          git add output/online.m3u
           git commit -m "Update working IPTV playlist $(date)" || echo "No changes to commit"
           git push
 
@@ -67,5 +66,5 @@ jobs:
             curl -X PATCH "https://api.github.com/gists/${GIST_ID}" \
               -H "Authorization: token ${GIST_TOKEN}" \
               -H "Content-Type: application/json" \
-              -d "{\"files\": {\"working_playlist.m3u\": {\"content\": \"$(cat online.m3u | sed 's/\"/\\\"/g')\"}}}"
+              -d "{\"files\": {\"working_playlist_pk.m3u\": {\"content\": \"$(cat output/online.m3u | sed 's/\"/\\\"/g')\"}}}"
           fi
