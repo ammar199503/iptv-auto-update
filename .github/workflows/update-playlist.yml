@@ -2,7 +2,7 @@ name: IPTV Checker & Updater
 
 on:
   schedule:
-    - cron: "0 */12 * * *"  # Runs every 12 hours
+    - cron: "0 0 * * *"  # Runs every 24 hours
   workflow_dispatch:
 
 jobs:
@@ -47,12 +47,14 @@ jobs:
           cat output/online.m3u
 
       - name: Commit & Push Updated Working Playlist to Repo
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "actions@github.com"
           git add output/online.m3u
           git commit -m "Update working IPTV playlist $(date)" || echo "No changes to commit"
-          git push
+          git push "https://${GITHUB_TOKEN}@github.com/${{ github.repository }}.git"
 
       - name: Update Gist with Working Playlist (Optional)
         env:
@@ -68,3 +70,4 @@ jobs:
               -H "Authorization: token ${GIST_TOKEN}" \
               -H "Content-Type: application/json" \
               -d "{\"files\": {\"working_playlist_pk.m3u\": {\"content\": ${gist_content}}}}"
+          fi
