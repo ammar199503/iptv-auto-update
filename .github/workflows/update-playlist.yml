@@ -27,7 +27,18 @@ jobs:
 
           echo "Combined playlist:"
           cat playlist.m3u
-          
+
+      - name: Validate Playlist Format
+        run: |
+          if ! grep -q "^#EXTINF" playlist.m3u; then
+            echo "Invalid playlist format: Missing #EXTINF lines"
+            exit 1
+          fi
+          if ! grep -q "^http" playlist.m3u; then
+            echo "Invalid playlist format: Missing HTTP links"
+            exit 1
+          fi
+    
       - name: Install Dependencies and iptv-checker via npm
         run: |
           sudo apt update
