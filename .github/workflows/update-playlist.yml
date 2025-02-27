@@ -36,18 +36,22 @@ jobs:
           sudo apt install -y nodejs npm curl jq ffmpeg
           npm install -g iptv-checker
           export PATH=$PATH:$(npm bin -g)
+          
+      - name: Create Output Directory
+        run: mkdir -p output
+
      
-      - name: Run iptv-checker on the Combined Playlist
+      - name: Run iptv-checker on the Playlist
         run: |
-          iptv-checker playlist.m3u -o working_playlist.m3u
-          echo "Working Playlist:"
-          cat working_playlist.m3u
+          iptv-checker playlist.m3u -o output
+          echo "Online Playlist:"
+          cat output/online.m3u
 
       - name: Commit & Push Updated Working Playlist to Repo
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "actions@github.com"
-          git add working_playlist.m3u
+          git add online.m3u
           git commit -m "Update working IPTV playlist $(date)" || echo "No changes to commit"
           git push
 
@@ -63,5 +67,5 @@ jobs:
             curl -X PATCH "https://api.github.com/gists/${GIST_ID}" \
               -H "Authorization: token ${GIST_TOKEN}" \
               -H "Content-Type: application/json" \
-              -d "{\"files\": {\"working_playlist.m3u\": {\"content\": \"$(cat working_playlist.m3u | sed 's/\"/\\\"/g')\"}}}"
+              -d "{\"files\": {\"working_playlist.m3u\": {\"content\": \"$(cat online.m3u | sed 's/\"/\\\"/g')\"}}}"
           fi
