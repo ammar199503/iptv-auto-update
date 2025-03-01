@@ -16,12 +16,7 @@ jobs:
         run: |
           # Define your M3U playlist URLs (one per line)
           cat <<EOF > playlist_links.txt
-          https://iptv-org.github.io/iptv/countries/pk.m3u
-          https://iptv-org.github.io/iptv/countries/in.m3u
-          https://iptv-org.github.io/iptv/countries/uk.m3u
-          https://iptv-org.github.io/iptv/countries/us.m3u
-          https://iptv-org.github.io/iptv/countries/ae.m3u
-          https://iptv-org.github.io/iptv/countries/sa.m3u
+          https://iptv-org.github.io/iptv/index.category.m3u
           EOF
 
           while read -r url; do
@@ -70,129 +65,129 @@ jobs:
             exit 1
           fi
           echo "#EXTM3U" > output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Saudi Quran" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Saudi Quran" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/saudiquransd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Saudi Sunnah" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Saudi Sunnah" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/saudisunnahsd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Ary QTV" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Ary QTV" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/aryqtvsd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Madni TV" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Madni TV" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/madnitvsd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Animal Planet" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Animal Planet" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/skyanimalplanetddr/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" National Geographic" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", National Geographic" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/skynatgeo/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Action Movies" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Action Movies" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/osnmovieaction/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Sky Cinema" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Sky Cinema" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/skycinemapremier/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" OSN movies" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", OSN movies" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/osnmovies/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" OSN Series" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", OSN Series" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/osnseries/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Sky Cinema Sci-fi" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Sky Cinema Sci-fi" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/skycinemascifi/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" 8xm" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", 8xm" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/8xmsd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Jalwa Music" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Jalwa Music" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/jalwamusicsd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" A Plus" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", A Plus" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/aplushd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Aan TV" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Aan TV" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/aantvhd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" A TV" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", A TV" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/atvhd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Aur Life" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Aur Life" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/aurlifehdddr/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Aaj TV" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Aaj TV" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/aajtvsd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Apna TV" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Apna TV" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/apnatv/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Ary Digital" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Ary Digital" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/arydigitalhd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Geo TV" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Geo TV" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/geotvhdddr/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Hum TV" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Hum TV" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/humtvsdddr/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" 24 News" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", 24 News" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/24newshd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" 7 News" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", 7 News" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/7newshd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" 92 News" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", 92 News" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/92newshdddr/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Abn News" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Abn News" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/abnnewshd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Aaj News" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Aaj News" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/aajnewssd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Abbtak News" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Abbtak News" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/abbtaknewssd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Ary News" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Ary News" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/arynewssd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Bol News" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Bol News" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/bolnewshd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Channel Five" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Channel Five" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/channelfive/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Dawn News" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Dawn News" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/dawnnewssd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Dunya News" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Dunya News" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/dunyanewshd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Express News" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Express News" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/expressnewssd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Geo News" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Geo News" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/geonewshdddr/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Hum News" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Hum News" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/humnewshd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Ktn News" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Ktn News" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/ktnnewshd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Khyber News" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Khyber News" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/khybernewssd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Lahore news" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Lahore news" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/lahorenewshd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Neo News" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Neo News" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/neonewshd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Pnn News" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Pnn News" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/pnnnewshd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Sindh News" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Sindh News" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/sindhnewssd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Talon News" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Talon News" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/talonnewshd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Vsh News" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Vsh News" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/vshnewssd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Ptv News" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Ptv News" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/ptvnewshd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Play TV" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Play TV" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/playtvsd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Public News" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Public News" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/publicnewshd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Such News" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Such News" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/suchnewshd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Samaa News" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Samaa News" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/samaanewssdddr/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Suno News" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Suno News" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/sunonewshd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" A Sports" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", A Sports" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/asportssd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Astro Cric" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Astro Cric" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/astrocrichd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Ptv Sports" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Ptv Sports" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/ptvsportssd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Super Sports EPL" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Super Sports EPL" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/supersportseplhd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Starz Play Cric" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Starz Play Cric" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/starzplaycric/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Sky Sports Cric" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Sky Sports Cric" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/skysportscrichd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Sky Sports EPL" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Sky Sports EPL" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/skysportseplhd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Sky Main Event" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Sky Main Event" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/skyspmainevent/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Willow Cricket Xtra" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Willow Cricket Xtra" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/willowcricketxtra/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Ten Sports" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Ten Sports" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/tensportssdddr/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Willow Cric" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Willow Cric" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/willowcrichd/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
-          echo "##EXTINF:-1, group-title="Pakistan" Sky Sports WWE" >> output/final_playlist.m3u
+          echo "##EXTINF:-1, group-title="Pakistan", Sky Sports WWE" >> output/final_playlist.m3u
           echo "http://webtv.dodear.asia:88/skysportswwe/tracks-v1a1/mono.m3u8" >> output/final_playlist.m3u
           cat output/online.m3u >> output/final_playlist.m3u
           echo "Final Playlist:"
