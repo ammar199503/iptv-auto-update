@@ -2,7 +2,7 @@ name: IPTV Checker & Updater
 
 on:
   schedule:
-    - cron: "0 22 * * 0"  # Runs every 24 hours
+    - cron: "0 22 * * 0"  # Runs every week, Monday 3:00 AM UTC+5 hours
   workflow_dispatch:
 
 jobs:
